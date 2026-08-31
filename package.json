@@ -1,0 +1,31 @@
+{
+  "name": "api-relogio-recife",
+  "version": "1.0.0",
+  "description": "API Node.js para consulta da data e hora local de Recife.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "api",
+    "data",
+    "hora",
+    "recife"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
+  }
+}
