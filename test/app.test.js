@@ -5,7 +5,7 @@ describe("API Relógio de Recife", () => {
   test("GET / apresenta a API", async () => {
     const response = await request(app).get("/");
 
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(201);
     expect(response.body.projeto).toBe("Relógio de Recife");
   });
 
@@ -17,6 +17,13 @@ describe("API Relógio de Recife", () => {
     expect(response.body.fuso).toBe("America/Recife");
     expect(response.body).toHaveProperty("horario");
     expect(response.body).toHaveProperty("referenciaUtc");
+  });
+
+  test("GET /health confirma que o serviço está disponível", async () => {
+    const response = await request(app).get("/health");
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.status).toBe("OK");
   });
 
   test("rota inexistente retorna HTTP 404", async () => {
