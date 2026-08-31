@@ -1,0 +1,41 @@
+name: Testes - Relogio de Recife
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obter arquivos do projeto
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar pacotes
+        run: npm ci
+
+      - name: Validar a API
+        run: npm test -- --runInBand
+
+  docker:
+    name: Construir imagem Docker
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obter arquivos do projeto
+        uses: actions/checkout@v4
+
+      - name: Empacotar aplicação
+        run: docker build --tag relogio-recife:${{ github.sha }} .
