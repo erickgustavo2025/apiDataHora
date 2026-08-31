@@ -15,6 +15,10 @@ app.get("/horario", (req, res) => {
   res.status(200).json(montarHorarioAtual());
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK" });
+});
+
 app.use((req, res) => {
   res.status(404).json({ erro: "Rota não encontrada" });
 });
